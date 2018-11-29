@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9014E8EB21AB6E350010B488 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014E8EA21AB6E350010B488 /* Model.swift */; };
+		9027B5B221B02C080012B778 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9027B5B121B02C080012B778 /* Scene.swift */; };
+		9027B5B421B031600012B778 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9027B5B321B031600012B778 /* Renderable.swift */; };
+		90C4EBF721AB73A000C2C9C5 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C4EBF621AB73A000C2C9C5 /* Error.swift */; };
 		90F9418A219F90800036A0CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F94189219F90800036A0CC /* AppDelegate.swift */; };
 		90F9418C219F90800036A0CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F9418B219F90800036A0CC /* ViewController.swift */; };
 		90F9418E219F90810036A0CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90F9418D219F90810036A0CC /* Assets.xcassets */; };
@@ -48,6 +52,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9014E8EA21AB6E350010B488 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		9027B5B121B02C080012B778 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		9027B5B321B031600012B778 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
+		90C4EBF621AB73A000C2C9C5 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		90F94186219F90800036A0CC /* ShadingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F94189219F90800036A0CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90F9418B219F90800036A0CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +96,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9014E8E921AB6E1D0010B488 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				90F941BA21A160D50036A0CC /* spot_texture.png */,
+				90F941BB21A160D50036A0CC /* spot.obj */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		9027B5B021B02BF10012B778 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				90F941A0219FB8380036A0CC /* Node.swift */,
+				90F941B521A02F430036A0CC /* Camera.swift */,
+				9014E8EA21AB6E350010B488 /* Model.swift */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
 		90F9417D219F90800036A0CC = {
 			isa = PBXGroup;
 			children = (
@@ -123,14 +150,15 @@
 		90F9419B219F99D30036A0CC /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				90F941BE21A166160036A0CC /* ShadingDemo-Bridging-Header.h */,
 				90F94199219F965E0036A0CC /* Renderer.swift */,
-				90F941A0219FB8380036A0CC /* Node.swift */,
-				90F941B521A02F430036A0CC /* Camera.swift */,
-				90F941BA21A160D50036A0CC /* spot_texture.png */,
-				90F941BB21A160D50036A0CC /* spot.obj */,
+				9027B5B121B02C080012B778 /* Scene.swift */,
+				9027B5B321B031600012B778 /* Renderable.swift */,
+				9027B5B021B02BF10012B778 /* Node */,
+				9014E8E921AB6E1D0010B488 /* Resource */,
 				90F941BC21A1653C0036A0CC /* Test.metal */,
 				90F941BF21A166170036A0CC /* Common.h */,
-				90F941BE21A166160036A0CC /* ShadingDemo-Bridging-Header.h */,
+				90C4EBF621AB73A000C2C9C5 /* Error.swift */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -260,12 +288,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90C4EBF721AB73A000C2C9C5 /* Error.swift in Sources */,
+				9014E8EB21AB6E350010B488 /* Model.swift in Sources */,
 				90F9418C219F90800036A0CC /* ViewController.swift in Sources */,
+				9027B5B421B031600012B778 /* Renderable.swift in Sources */,
 				90F941B621A02F430036A0CC /* Camera.swift in Sources */,
 				90F941A1219FB8380036A0CC /* Node.swift in Sources */,
 				90F941BD21A1653C0036A0CC /* Test.metal in Sources */,
 				90F9419A219F965E0036A0CC /* Renderer.swift in Sources */,
 				90F9418A219F90800036A0CC /* AppDelegate.swift in Sources */,
+				9027B5B221B02C080012B778 /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

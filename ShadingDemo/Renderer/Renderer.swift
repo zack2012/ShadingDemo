@@ -13,11 +13,11 @@ import ModelIO
 class Renderer: NSObject {
     init(mtkView: MTKView) throws {
         guard let device = mtkView.device else {
-            throw Err.isNil(message: "MTLDevice is nil")
+            throw ShadingError.isNil(message: "MTLDevice is nil")
         }
         
         guard let commandQueue = device.makeCommandQueue() else {
-            throw Err.isNil(message: "makeCommandQueue is nil")
+            throw ShadingError.isNil(message: "makeCommandQueue is nil")
         }
         
         self.device = device
@@ -161,11 +161,5 @@ extension Renderer: MTKViewDelegate {
                                               indexBufferOffset: submesh.indexBuffer.offset)
             }
         }
-    }
-}
-
-extension Renderer {
-    enum Err: Swift.Error {
-        case isNil(message: String)
     }
 }
