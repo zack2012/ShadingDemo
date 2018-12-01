@@ -26,6 +26,18 @@ class Node {
         return translateMatrix * rotateMatrix * scaleMatrix
     }
     
+    var worldTransform: float4x4 {
+        if let parent = parent {
+            return parent.worldTransform * modelMatrix
+        }
+        
+        return modelMatrix
+    }
+    
+    var normalMatrix: float3x3 {
+        return modelMatrix.upperLeft
+    }
+    
     final func add(_ node: Node) {
         children.append(node)
         node.parent = self

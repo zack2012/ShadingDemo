@@ -10,5 +10,9 @@ import MetalKit
 
 protocol Renderable {
     var name: String { get }
-    func render(encoder: MTLRenderCommandEncoder, uniforms: Uniforms)
+    var mesh: MTKMesh { get }
+    var submeshes: [Submesh] { get }
+    
+    var modelMatrix: float4x4 { get }
+    var normalMatrix: float3x3 { get }
 }

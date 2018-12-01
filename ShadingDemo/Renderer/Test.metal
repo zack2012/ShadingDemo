@@ -14,6 +14,9 @@ using namespace metal;
 struct VertexInput {
     float3 position [[attribute(0)]];
     float3 normal [[attribute(1)]];
+    float2 uv [[attribute(2)]];
+    float2 tangent [[attribute(3)]];
+    float2 bitangent [[attribute(4)]];
 };
 
 struct VertexOut {
@@ -24,7 +27,7 @@ struct VertexOut {
 };
 
 vertex VertexOut testVertex(VertexInput in [[stage_in]],
-                               constant Uniforms &uniforms [[buffer(1)]]
+                               constant Uniforms &uniforms [[buffer(10)]]
                                ) {
     VertexOut vertexOut;
     

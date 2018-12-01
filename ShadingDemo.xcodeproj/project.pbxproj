@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9014E8EB21AB6E350010B488 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014E8EA21AB6E350010B488 /* Model.swift */; };
 		9027B5B221B02C080012B778 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9027B5B121B02C080012B778 /* Scene.swift */; };
 		9027B5B421B031600012B778 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9027B5B321B031600012B778 /* Renderable.swift */; };
+		9027B5B621B0B9790012B778 /* Submesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9027B5B521B0B9790012B778 /* Submesh.swift */; };
+		9027B5B821B285580012B778 /* Prop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9027B5B721B285580012B778 /* Prop.swift */; };
+		9027B5BA21B2B0A60012B778 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9027B5B921B2B0A60012B778 /* GameScene.swift */; };
+		9027B5BC21B2C0950012B778 /* dragon.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9027B5BB21B2C0520012B778 /* dragon.obj */; };
+		9027B5BE21B2C1640012B778 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9027B5BD21B2C15C0012B778 /* teapot.obj */; };
+		9027B5C221B2C2420012B778 /* DragonProp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9027B5C121B2C2420012B778 /* DragonProp.swift */; };
 		90C4EBF721AB73A000C2C9C5 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C4EBF621AB73A000C2C9C5 /* Error.swift */; };
 		90F9418A219F90800036A0CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F94189219F90800036A0CC /* AppDelegate.swift */; };
 		90F9418C219F90800036A0CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F9418B219F90800036A0CC /* ViewController.swift */; };
@@ -52,9 +57,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9014E8EA21AB6E350010B488 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		9027B5B121B02C080012B778 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		9027B5B321B031600012B778 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
+		9027B5B521B0B9790012B778 /* Submesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submesh.swift; sourceTree = "<group>"; };
+		9027B5B721B285580012B778 /* Prop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prop.swift; sourceTree = "<group>"; };
+		9027B5B921B2B0A60012B778 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		9027B5BB21B2C0520012B778 /* dragon.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
+		9027B5BD21B2C15C0012B778 /* teapot.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
+		9027B5C121B2C2420012B778 /* DragonProp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonProp.swift; sourceTree = "<group>"; };
 		90C4EBF621AB73A000C2C9C5 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		90F94186219F90800036A0CC /* ShadingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F94189219F90800036A0CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +111,8 @@
 			children = (
 				90F941BA21A160D50036A0CC /* spot_texture.png */,
 				90F941BB21A160D50036A0CC /* spot.obj */,
+				9027B5BB21B2C0520012B778 /* dragon.obj */,
+				9027B5BD21B2C15C0012B778 /* teapot.obj */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -110,9 +122,19 @@
 			children = (
 				90F941A0219FB8380036A0CC /* Node.swift */,
 				90F941B521A02F430036A0CC /* Camera.swift */,
-				9014E8EA21AB6E350010B488 /* Model.swift */,
+				9027B5B721B285580012B778 /* Prop.swift */,
+				9027B5C121B2C2420012B778 /* DragonProp.swift */,
 			);
 			path = Node;
+			sourceTree = "<group>";
+		};
+		9027B5C321B2C7F20012B778 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				9027B5B121B02C080012B778 /* Scene.swift */,
+				9027B5B921B2B0A60012B778 /* GameScene.swift */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 		90F9417D219F90800036A0CC = {
@@ -152,8 +174,9 @@
 			children = (
 				90F941BE21A166160036A0CC /* ShadingDemo-Bridging-Header.h */,
 				90F94199219F965E0036A0CC /* Renderer.swift */,
-				9027B5B121B02C080012B778 /* Scene.swift */,
 				9027B5B321B031600012B778 /* Renderable.swift */,
+				9027B5B521B0B9790012B778 /* Submesh.swift */,
+				9027B5C321B2C7F20012B778 /* Scene */,
 				9027B5B021B02BF10012B778 /* Node */,
 				9014E8E921AB6E1D0010B488 /* Resource */,
 				90F941BC21A1653C0036A0CC /* Test.metal */,
@@ -267,6 +290,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9027B5BE21B2C1640012B778 /* teapot.obj in Resources */,
+				9027B5BC21B2C0950012B778 /* dragon.obj in Resources */,
 				90F941C421A169CD0036A0CC /* spot_texture.png in Resources */,
 				90F941C521A169CD0036A0CC /* spot.obj in Resources */,
 				90F9418E219F90810036A0CC /* Assets.xcassets in Resources */,
@@ -288,12 +313,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9027B5C221B2C2420012B778 /* DragonProp.swift in Sources */,
+				9027B5B621B0B9790012B778 /* Submesh.swift in Sources */,
 				90C4EBF721AB73A000C2C9C5 /* Error.swift in Sources */,
-				9014E8EB21AB6E350010B488 /* Model.swift in Sources */,
+				9027B5B821B285580012B778 /* Prop.swift in Sources */,
 				90F9418C219F90800036A0CC /* ViewController.swift in Sources */,
 				9027B5B421B031600012B778 /* Renderable.swift in Sources */,
 				90F941B621A02F430036A0CC /* Camera.swift in Sources */,
 				90F941A1219FB8380036A0CC /* Node.swift in Sources */,
+				9027B5BA21B2B0A60012B778 /* GameScene.swift in Sources */,
 				90F941BD21A1653C0036A0CC /* Test.metal in Sources */,
 				90F9419A219F965E0036A0CC /* Renderer.swift in Sources */,
 				90F9418A219F90800036A0CC /* AppDelegate.swift in Sources */,

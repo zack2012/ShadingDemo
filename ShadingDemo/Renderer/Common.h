@@ -18,4 +18,13 @@ typedef struct {
     matrix_float3x3 normalMatrix;
 } Uniforms;
 
+struct Material {
+    vector_float3 baseColor;
+    vector_float3 specularColor;
+    float roughness;
+    float metalness;
+    vector_float3 ambientOcclusion;
+    float shininess;
+};
+
 #endif /* Common_h */

@@ -8,6 +8,7 @@
 
 import Cocoa
 import MetalKit
+import Math
 
 class ViewController: NSViewController {
 
@@ -28,6 +29,8 @@ class ViewController: NSViewController {
         
         do {
             renderer = try Renderer(mtkView: metalView)
+            let gameScene = GameScene(sceneSize: metalView.bounds.size, device: renderer.device)
+            renderer.scene = gameScene
             addGesture(to: metalView)
         } catch {
             print(error)
@@ -45,13 +48,30 @@ class ViewController: NSViewController {
             Float(gesture.translation(in: gesture.view).y)
         ]
 
-        renderer?.rotate(translation: translation)
+        rotate(translation: translation)
         gesture.setTranslation(.zero, in: gesture.view)
     }
     
     override func scrollWheel(with event: NSEvent) {
         let sensitivity: Float = 0.01
-        renderer?.zoom(delta: event.deltaY, sensitivity: sensitivity)
+        zoom(delta: event.deltaY, sensitivity: sensitivity)
+    }
+    
+    func rotate(translation: float2, sensitivity: Float = 0.01) {
+        guard let camera = renderer.scene?.camera else {
+            return
+        }
+        
+        camera.position = Math.rotation(axis: [0, 1, 0], angle: -translation.x * sensitivity).upperLeft * camera.position
+    }
+    
+    func zoom(delta: CGFloat, sensitivity: Float = 0.1) {
+        guard let camera = renderer.scene?.camera else {
+            return
+        }
+        
+        let cameraVector = camera.modelMatrix.columns.3.xyz
+        camera.position += Float(delta) * sensitivity * cameraVector
     }
 }
 

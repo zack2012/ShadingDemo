@@ -31,20 +31,7 @@ class Renderer: NSObject {
         pipelineDesc.vertexFunction = vertexFunc
         pipelineDesc.fragmentFunction = fragmentFunc
         
-        let mtlVertexDesc = MTLVertexDescriptor()
-        
-        // position
-        mtlVertexDesc.attributes[0].format = .float3
-        mtlVertexDesc.attributes[0].offset = 0
-        mtlVertexDesc.attributes[0].bufferIndex = 0
-        
-        // normal
-        mtlVertexDesc.attributes[1].format = .float3
-        mtlVertexDesc.attributes[1].offset = 12
-        mtlVertexDesc.attributes[1].bufferIndex = 0
-        
-        mtlVertexDesc.layouts[0].stride = 24
-        mtlVertexDesc.layouts[0].stepFunction = .perVertex
+        let mtlVertexDesc = Renderer.makeVertexDescriptor()
         
         pipelineDesc.vertexDescriptor = mtlVertexDesc
         pipelineDesc.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
@@ -58,55 +45,72 @@ class Renderer: NSObject {
         depthStateDesc.isDepthWriteEnabled = true
         depthState = device.makeDepthStencilState(descriptor: depthStateDesc)
         
-        let mdlVertexDesc = try! MTKModelIOVertexDescriptorFromMetalWithError(mtlVertexDesc)
-        
-        // attribute.name must be set, or draw call will failed
-        var attribute = mdlVertexDesc.attributes[0] as! MDLVertexAttribute
-        attribute.name = MDLVertexAttributePosition
-        
-        attribute = mdlVertexDesc.attributes[1] as! MDLVertexAttribute
-        attribute.name = MDLVertexAttributeNormal
-        
-        let bufferAlloctor = MTKMeshBufferAllocator(device: device)
-        let bundle = Bundle.main
-        let url = bundle.url(forResource: "spot", withExtension: "obj")!
-        let cow = MDLAsset(url: url, vertexDescriptor: mdlVertexDesc, bufferAllocator: bufferAlloctor)
-        
-        (_, self.cowMeshes) = try! MTKMesh.newMeshes(asset: cow, device: device)
-        
         super.init()
         
-        camera.position = [3, 3, 5]
-        camera.lookAt(center: [0, 0, 0], up: [0, 1, 0])
         mtkView.delegate = self
     }
     
-    var pipelineState: MTLRenderPipelineState!
-    var depthState: MTLDepthStencilState!
-    private var cowMeshes: [MTKMesh]
-    var uniforms = Uniforms()
-
-    var camera = Camera()
+    var scene: Scene?
     
-    func rotate(translation: float2, sensitivity: Float = 0.01) {
-        camera.position = Math.rotation(axis: [0, 1, 0], angle: -translation.x * sensitivity).upperLeft * camera.position
+    private var pipelineState: MTLRenderPipelineState!
+    private var depthState: MTLDepthStencilState!
+    
+    var device: MTLDevice
+    var commandQueue: MTLCommandQueue
+    
+    private static func makeVertexDescriptor() -> MTLVertexDescriptor {
+        let mtlVertexDesc = MTLVertexDescriptor()
+        
+        // position
+        mtlVertexDesc.attributes[0].format = .float3
+        mtlVertexDesc.attributes[0].offset = 0
+        mtlVertexDesc.attributes[0].bufferIndex = 0
+        
+        // normal
+        mtlVertexDesc.attributes[1].format = .float3
+        mtlVertexDesc.attributes[1].offset = 12
+        mtlVertexDesc.attributes[1].bufferIndex = 0
+        
+        // uv
+        mtlVertexDesc.attributes[2].format = .float2
+        mtlVertexDesc.attributes[2].offset = 24
+        mtlVertexDesc.attributes[2].bufferIndex = 0
+        
+        // tangent
+        mtlVertexDesc.attributes[3].format = .float3
+        mtlVertexDesc.attributes[3].offset = 0
+        // 用ModelIO生成的tangent默认bufferIndex = 1，这里要保持同步
+        mtlVertexDesc.attributes[3].bufferIndex = 1
+        
+        // bitangent
+        mtlVertexDesc.attributes[4].format = .float3
+        mtlVertexDesc.attributes[4].offset = 0
+        // 用ModelIO生成的bitangent默认bufferIndex = 2，这里要保持同步
+        mtlVertexDesc.attributes[4].bufferIndex = 2
+        
+        mtlVertexDesc.layouts[0].stride = 32
+        mtlVertexDesc.layouts[0].stepFunction = .perVertex
+        
+        mtlVertexDesc.layouts[1].stride = 12
+        mtlVertexDesc.layouts[1].stepFunction = .perVertex
+        
+        mtlVertexDesc.layouts[2].stride = 12
+        mtlVertexDesc.layouts[2].stepFunction = .perVertex
+        
+        return mtlVertexDesc
     }
-    
-    func zoom(delta: CGFloat, sensitivity: Float = 0.1) {
-        let cameraVector = camera.modelMatrix.columns.3.xyz
-        camera.position += Float(delta) * sensitivity * cameraVector
-    }
-    
-    private var device: MTLDevice
-    private var commandQueue: MTLCommandQueue
 }
 
 extension Renderer: MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        camera.aspect = Float(size.width / size.height)
+        scene?.sceneSizeWillChange(to: size)
     }
     
     func draw(in view: MTKView) {
+        guard let scene = scene else {
+            return
+        }
+        
         guard let commandBuffer = commandQueue.makeCommandBuffer() else {
             return
         }
@@ -120,19 +124,35 @@ extension Renderer: MTKViewDelegate {
             return
         }
         
+        let deltaTime = 1 / Float(view.preferredFramesPerSecond)
+        scene.update(deltaTime: deltaTime)
+        
         setupEncoder(encoder, pipelineState: pipelineState)
-        
-        uniforms.projectionMatrix = camera.projectionMatrix
-        uniforms.viewMatrix = camera.viewMatrix
-        let node = Node()
-        node.scale = [1, 1, 1]
-        node.position = [1, 0, 0]
-        uniforms.modelMatrix = node.modelMatrix
-        uniforms.normalMatrix = node.modelMatrix.upperLeft
-        
-        encoder.setVertexBytes(&uniforms, length: MemoryLayout<Uniforms>.stride, index: 1)
-        
-        draw(encoder: encoder, meshes: self.cowMeshes)
+
+        for renderable in scene.renderables {
+            encoder.pushDebugGroup(renderable.name)
+            
+            var uniforms = scene.uniforms
+            uniforms.modelMatrix = renderable.modelMatrix
+            uniforms.normalMatrix = renderable.normalMatrix
+            
+            encoder.setVertexBytes(&uniforms, length: MemoryLayout<Uniforms>.stride, index: 10)
+            
+            for (i, meshBuffer) in renderable.mesh.vertexBuffers.enumerated() {
+                encoder.setVertexBuffer(meshBuffer.buffer, offset: meshBuffer.offset, index: i)
+            }
+            
+            for modelSubmesh in renderable.submeshes {
+                let submesh = modelSubmesh.submesh
+                encoder.drawIndexedPrimitives(type: submesh.primitiveType,
+                                              indexCount: submesh.indexCount,
+                                              indexType: submesh.indexType,
+                                              indexBuffer: submesh.indexBuffer.buffer,
+                                              indexBufferOffset: submesh.indexBuffer.offset)
+            }
+            
+            encoder.popDebugGroup()
+        }
         
         encoder.endEncoding()
         
