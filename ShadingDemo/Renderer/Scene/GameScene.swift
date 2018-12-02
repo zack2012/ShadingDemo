@@ -19,17 +19,21 @@ class GameScene: Scene {
         cow.position = [0, 0, 0]
         cow.scale = [2, 2, 2]
         add(cow)
-        
-        let dragon = DragonProp(name: "dragon", device: device)
-        dragon.position = [2, 0, 0]
-        dragon.rotation = [0, 1, 0]
-        add(dragon)
-        
-        let teapot = Prop(name: "teapot", device: device)
-        teapot.position = [0, 1, 0]
-        teapot.scale = [0.2, 0.2, 0.2]
-        self.teapot = teapot
-        add(teapot)
+
+        let cube = Prop(name: "cube", device: device)
+        cube.position = [2, 1, 1]
+        cube.scale = [0.5, 0.5, 0.5]
+        add(cube)
+//        let dragon = DragonProp(name: "dragon", device: device)
+//        dragon.position = [2, 0, 0]
+//        dragon.rotation = [0, 1, 0]
+//        add(dragon)
+//
+//        let teapot = Prop(name: "teapot", device: device)
+//        teapot.position = [0, 1, 0]
+//        teapot.scale = [0.2, 0.2, 0.2]
+//        self.teapot = teapot
+//        add(teapot)
     }
     
     override func updateScene(deltaTime: Float) {

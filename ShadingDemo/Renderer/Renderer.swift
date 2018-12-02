@@ -26,8 +26,8 @@ class Renderer: NSObject {
         let pipelineDesc = MTLRenderPipelineDescriptor()
         
         let library = device.makeDefaultLibrary()
-        let vertexFunc = library?.makeFunction(name: "testVertex")
-        let fragmentFunc = library?.makeFunction(name: "testFragment")
+        let vertexFunc = library?.makeFunction(name: "mainVertex")
+        let fragmentFunc = library?.makeFunction(name: "mainFragment")
         pipelineDesc.vertexFunction = vertexFunc
         pipelineDesc.fragmentFunction = fragmentFunc
         
@@ -144,6 +144,12 @@ extension Renderer: MTKViewDelegate {
             
             for modelSubmesh in renderable.submeshes {
                 let submesh = modelSubmesh.submesh
+                
+                // set texture
+                encoder.setFragmentTexture(modelSubmesh.textures.baseColor, index: 0)
+                encoder.setFragmentTexture(modelSubmesh.textures.normal, index: 1)
+                encoder.setFragmentTexture(modelSubmesh.textures.roughtness, index: 2)
+                
                 encoder.drawIndexedPrimitives(type: submesh.primitiveType,
                                               indexCount: submesh.indexCount,
                                               indexType: submesh.indexType,
