@@ -33,15 +33,7 @@ class Node {
         
         return modelMatrix
     }
-    
-    var forwardVector: float3 {
-        return normalize([sin(rotation.y), 0, cos(rotation.y)])
-    }
-    
-    var rightVector: float3 {
-        return [forwardVector.z, forwardVector.y, -forwardVector.x]
-    }
-    
+        
     var normalMatrix: float3x3 {
         return modelMatrix.upperLeft
     }

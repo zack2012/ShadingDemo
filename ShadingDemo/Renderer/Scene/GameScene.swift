@@ -12,8 +12,7 @@ class GameScene: Scene {
     private var teapot: Prop?
     
     override func setupScene() {
-        camera.position = [0, 0, 2]
-        camera.lookAt(center: [0, 0, 0], up: [0, 1, 0])
+        camera.lookAt(eye: [0, 0, 2], target: [0, 0, 0], up: [0, 1, 0])
 
         let cow = Prop(name: "spot", device: device)
         cow.position = [0, 0, 0]

@@ -16,7 +16,7 @@ class Camera: Node {
     var near: Float = 0.01
     var far: Float = 100
     
-    private(set) var center = float3()
+    private(set) var target = float3()
     private(set) var up = float3()
     
     var projectionMatrix: float4x4 {
@@ -29,12 +29,36 @@ class Camera: Node {
         return Math.rigidTransformInverse(modelMatrix)
     }
     
-    func lookAt(center: float3, up: float3) {
-        self.center = center
+    func lookAt(eye: float3, target: float3, up: float3) {
+        self.position = eye
+        self.target = target
         self.up = up
     }
     
     override var modelMatrix: float4x4 {
-        return Math.lookAt(eye: position, center: center, up: up)
+        return Math.lookAt(eye: position, target: target, up: up)
+    }
+    
+    /// point to target vector, opposite view space z axis
+    var forwardVector: float3 {
+        return (target - position).normalize
+    }
+    
+    /// view space x axis
+    var rightVector: float3 {
+        return up.cross(position - target).normalize
+    }
+    
+    /// view space y axis
+    var upVector: float3 {
+        return rightVector.cross(forwardVector)
+    }
+    
+    var currentPitch: Float {
+        return asin(forwardVector.y)
+    }
+    
+    var currentYaw: Float {
+        return asin(forwardVector.z / cos(currentPitch))
     }
 }

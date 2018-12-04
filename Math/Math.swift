@@ -213,8 +213,8 @@ public func ortho(left: Float, right: Float, bottom: Float, top: Float, near: Fl
     return float4x4(x, y, z, w)
 }
 
-public func lookAt(eye: float3, center: float3, up: float3) -> float4x4 {
-    let zAxis = (center - eye).normalize
+public func lookAt(eye: float3, target: float3, up: float3) -> float4x4 {
+    let zAxis = (target - eye).normalize
     var normalUp = up.normalize
     if abs(zAxis.dot(normalUp)) > 0.999 {
         normalUp = [normalUp.z, normalUp.x, normalUp.y]

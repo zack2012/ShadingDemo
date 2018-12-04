@@ -36,24 +36,29 @@ protocol KeyboardDelegate: class {
 }
 
 class InputController {
-    var camera: Camera?
+    var camera: Camera? {
+        didSet {
+            if let camera = self.camera {
+                pitch = camera.currentPitch
+                yaw = camera.currentYaw
+            }
+        }
+    }
     
-    var translationSpeed: Float = 2
-    var rotationSpeed: Float = 1.0
+    var translationSpeed: Float = 0.08
+    var rotationSpeed: Float = 0.005
     
     weak var keyboardDelegate: KeyboardDelegate?
     var directionKeysDown: Set<KeyboardControl> = []
     
-    private var cameraFront: float3 = [0, 0, -1]
+    private var pitch: Float = 0
+    private var yaw: Float = 0
     
     func updateCamera(deltaTime: Float) {
         guard let camera = self.camera else {
             return
         }
-        
-        let translationSpeed = deltaTime * self.translationSpeed
-        let rotationSpeed = deltaTime * self.rotationSpeed
-        
+
         var direction = float3()
         
         for key in directionKeysDown {
@@ -66,20 +71,27 @@ class InputController {
                 direction.z -= 1
             case .d:
                 direction.x += 1
-            case .left, .q:
+            case .up, .q:
                 direction.y += 1
-            case .right, .e:
+            case .down, .e:
                 direction.y -= 1
+            case .left:
+                break
+            case .right:
+                break
             default:
                 break
             }
         }
         
         if direction != [0, 0, 0] {
-            let cameraVec = cameraFront
-            camera.position += direction.z * cameraVec * 0.1
-            camera.position += cameraVec.cross(camera.up).normalize * direction.x * 0.1
-            camera.lookAt(center: camera.position + cameraVec, up: camera.up)
+            
+            var position = camera.position
+            position += direction.z * camera.forwardVector * self.translationSpeed
+            position += camera.rightVector * direction.x * self.translationSpeed
+            position += camera.upVector * direction.y * self.translationSpeed
+            
+            camera.lookAt(eye: position, target: position + camera.forwardVector, up: camera.up)
         }
     }
     
@@ -97,32 +109,31 @@ class InputController {
         }
     }
     
-    var pitch: Float = 0
-    var yaw: Float = 0
-    
     func rotate(translation: float2) {
         guard let camera = self.camera else {
             return
         }
         
-        pitch += translation.y * 0.01
-        yaw += translation.x * 0.01
+        pitch += translation.y * self.rotationSpeed
+        yaw += translation.x * self.rotationSpeed
         
-        if pitch > .pi / 2 - 0.1 {
-            pitch = .pi / 2 - 0.1
+        let maxPitch: Float = .pi / 2 - (.pi / 180)
+        if pitch > maxPitch {
+            pitch = maxPitch
         }
         
-        if pitch < -.pi / 2 + 0.1 {
-            pitch = -.pi / 2 + 0.1
+        if pitch < -maxPitch {
+            pitch = -maxPitch
         }
         
-        cameraFront.x = cos(pitch) * cos(yaw)
-        cameraFront.y = sin(pitch)
-        cameraFront.z = cos(pitch) * sin(yaw)
-        cameraFront = cameraFront.normalize
+
+        var cameraVec = float3()
+        cameraVec.x = cos(pitch) * cos(yaw)
+        cameraVec.y = sin(pitch)
+        cameraVec.z = cos(pitch) * sin(yaw)
+        cameraVec = cameraVec.normalize
         
-        let cameraVec = cameraFront
-        camera.lookAt(center: camera.position + cameraVec, up: camera.up)
+        camera.lookAt(eye: camera.position, target: camera.position + cameraVec, up: camera.up)
     }
     
     func zoom(delta: CGFloat) {
@@ -130,7 +141,15 @@ class InputController {
             return
         }
         
-        let cameraVector = camera.modelMatrix.columns.3.xyz
-        camera.position += Float(delta) * 0.1 * cameraVector
+        let degree = 180 / .pi * Float(delta) * 0.02
+        camera.fovDegrees += degree
+        
+        if camera.fovDegrees > 70 {
+            camera.fovDegrees = 70
+        }
+        
+        if camera.fovDegrees < 2 {
+            camera.fovDegrees = 2
+        }
     }
 }

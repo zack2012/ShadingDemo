@@ -507,7 +507,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShadingDemo/ShadingDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 7H237A2BEL;
+				DEVELOPMENT_TEAM = 4S68FLC2TS;
 				INFOPLIST_FILE = ShadingDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -530,7 +530,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShadingDemo/ShadingDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 7H237A2BEL;
+				DEVELOPMENT_TEAM = 4S68FLC2TS;
 				INFOPLIST_FILE = ShadingDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
