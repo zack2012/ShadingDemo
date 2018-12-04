@@ -8,7 +8,7 @@
 
 import Cocoa
 import MetalKit
-import Math
+import GMath
 
 class ViewController: NSViewController {
 

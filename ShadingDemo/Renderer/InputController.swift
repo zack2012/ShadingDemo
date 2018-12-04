@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Math
+import GMath
 
 enum KeyboardControl: UInt16 {
     case a =      0
@@ -85,7 +85,6 @@ class InputController {
         }
         
         if direction != [0, 0, 0] {
-            
             var position = camera.position
             position += direction.z * camera.forwardVector * self.translationSpeed
             position += camera.rightVector * direction.x * self.translationSpeed
@@ -117,16 +116,10 @@ class InputController {
         pitch += translation.y * self.rotationSpeed
         yaw += translation.x * self.rotationSpeed
         
-        let maxPitch: Float = .pi / 2 - (.pi / 180)
-        if pitch > maxPitch {
-            pitch = maxPitch
-        }
+        //TODO: 这里不能太接近90度，否则会抖动
+        let maxPitch: Float = .pi / 2 - (.pi / 180) * 10
+        pitch = GMath.clamp(pitch, min: -maxPitch, max: maxPitch)
         
-        if pitch < -maxPitch {
-            pitch = -maxPitch
-        }
-        
-
         var cameraVec = float3()
         cameraVec.x = cos(pitch) * cos(yaw)
         cameraVec.y = sin(pitch)

@@ -7,7 +7,7 @@
 //
 
 import MetalKit
-import Math
+import GMath
 
 class Camera: Node {
     var fovDegrees: Float = 70
@@ -26,7 +26,7 @@ class Camera: Node {
     }
     
     var viewMatrix: float4x4 {
-        return Math.rigidTransformInverse(modelMatrix)
+        return GMath.rigidTransformInverse(modelMatrix)
     }
     
     func lookAt(eye: float3, target: float3, up: float3) {
@@ -36,7 +36,7 @@ class Camera: Node {
     }
     
     override var modelMatrix: float4x4 {
-        return Math.lookAt(eye: position, target: target, up: up)
+        return GMath.lookAt(eye: position, target: target, up: up)
     }
     
     /// point to target vector, opposite view space z axis

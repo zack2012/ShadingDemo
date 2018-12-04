@@ -7,7 +7,7 @@
 //
 
 import MetalKit
-import Math
+import GMath
 
 class Node {
     var name = ""
@@ -19,9 +19,9 @@ class Node {
     var children: [Node] = []
     
     var modelMatrix: float4x4 {
-        let translateMatrix = Math.translate(position)
-        let rotateMatrix = Math.rotation(rotation)
-        let scaleMatrix = Math.scale(scale)
+        let translateMatrix = GMath.translate(position)
+        let rotateMatrix = GMath.rotation(rotation)
+        let scaleMatrix = GMath.scale(scale)
         
         return translateMatrix * rotateMatrix * scaleMatrix
     }

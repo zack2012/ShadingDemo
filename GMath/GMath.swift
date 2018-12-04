@@ -9,6 +9,10 @@
 import simd
 import QuartzCore
 
+public func clamp<T>(_ x: T, min: T, max: T) -> T where T: Comparable {
+    return Swift.min(Swift.max(x, min), max)
+}
+
 public extension Float {
     var radian: Float {
         return self * .pi / 180

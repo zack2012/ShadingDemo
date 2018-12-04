@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14670B0A21B65841000C6F5C /* GMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 14670B0821B65841000C6F5C /* GMath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14670B0D21B65841000C6F5C /* GMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14670B0621B65841000C6F5C /* GMath.framework */; };
+		14670B0E21B65841000C6F5C /* GMath.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14670B0621B65841000C6F5C /* GMath.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14670B1221B6584A000C6F5C /* GMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F9419E219FB80B0036A0CC /* GMath.swift */; };
 		9027B5B221B02C080012B778 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9027B5B121B02C080012B778 /* Scene.swift */; };
 		9027B5B421B031600012B778 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9027B5B321B031600012B778 /* Renderable.swift */; };
 		9027B5B621B0B9790012B778 /* Submesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9027B5B521B0B9790012B778 /* Submesh.swift */; };
@@ -27,22 +31,18 @@
 		90F94191219F90810036A0CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90F9418F219F90810036A0CC /* Main.storyboard */; };
 		90F9419A219F965E0036A0CC /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F94199219F965E0036A0CC /* Renderer.swift */; };
 		90F941A1219FB8380036A0CC /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F941A0219FB8380036A0CC /* Node.swift */; };
-		90F941AB219FBB4E0036A0CC /* Math.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F941A9219FBB4E0036A0CC /* Math.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		90F941AE219FBB4E0036A0CC /* Math.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F941A7219FBB4E0036A0CC /* Math.framework */; };
-		90F941AF219FBB4E0036A0CC /* Math.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90F941A7219FBB4E0036A0CC /* Math.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		90F941B4219FBB5F0036A0CC /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F9419E219FB80B0036A0CC /* Math.swift */; };
 		90F941B621A02F430036A0CC /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F941B521A02F430036A0CC /* Camera.swift */; };
 		90F941BD21A1653C0036A0CC /* renderer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 90F941BC21A1653C0036A0CC /* renderer.metal */; };
 		90F941C521A169CD0036A0CC /* spot.obj in Resources */ = {isa = PBXBuildFile; fileRef = 90F941BB21A160D50036A0CC /* spot.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		90F941AC219FBB4E0036A0CC /* PBXContainerItemProxy */ = {
+		14670B0B21B65841000C6F5C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90F9417E219F90800036A0CC /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 90F941A6219FBB4E0036A0CC;
-			remoteInfo = Math;
+			remoteGlobalIDString = 14670B0521B65841000C6F5C;
+			remoteInfo = GMath;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -53,7 +53,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				90F941AF219FBB4E0036A0CC /* Math.framework in Embed Frameworks */,
+				14670B0E21B65841000C6F5C /* GMath.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,6 +61,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		14670B0621B65841000C6F5C /* GMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GMath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14670B0821B65841000C6F5C /* GMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GMath.h; sourceTree = "<group>"; };
+		14670B0921B65841000C6F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9027B5B121B02C080012B778 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		9027B5B321B031600012B778 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
 		9027B5B521B0B9790012B778 /* Submesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submesh.swift; sourceTree = "<group>"; };
@@ -83,11 +86,8 @@
 		90F94192219F90810036A0CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90F94193219F90810036A0CC /* ShadingDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShadingDemo.entitlements; sourceTree = "<group>"; };
 		90F94199219F965E0036A0CC /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
-		90F9419E219FB80B0036A0CC /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		90F9419E219FB80B0036A0CC /* GMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMath.swift; sourceTree = "<group>"; };
 		90F941A0219FB8380036A0CC /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
-		90F941A7219FBB4E0036A0CC /* Math.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Math.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		90F941A9219FBB4E0036A0CC /* Math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
-		90F941AA219FBB4E0036A0CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90F941B521A02F430036A0CC /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		90F941BB21A160D50036A0CC /* spot.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = spot.obj; sourceTree = "<group>"; };
 		90F941BC21A1653C0036A0CC /* renderer.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = renderer.metal; sourceTree = "<group>"; };
@@ -96,24 +96,34 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		14670B0321B65841000C6F5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90F94183219F90800036A0CC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90F941AE219FBB4E0036A0CC /* Math.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		90F941A4219FBB4E0036A0CC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				14670B0D21B65841000C6F5C /* GMath.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14670B0721B65841000C6F5C /* GMath */ = {
+			isa = PBXGroup;
+			children = (
+				14670B0821B65841000C6F5C /* GMath.h */,
+				14670B0921B65841000C6F5C /* Info.plist */,
+				90F9419E219FB80B0036A0CC /* GMath.swift */,
+			);
+			path = GMath;
+			sourceTree = "<group>";
+		};
 		9014E8E921AB6E1D0010B488 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				90F94188219F90800036A0CC /* ShadingDemo */,
-				90F941A8219FBB4E0036A0CC /* Math */,
+				14670B0721B65841000C6F5C /* GMath */,
 				90F94187219F90800036A0CC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -170,7 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				90F94186219F90800036A0CC /* ShadingDemo.app */,
-				90F941A7219FBB4E0036A0CC /* Math.framework */,
+				14670B0621B65841000C6F5C /* GMath.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,30 +216,38 @@
 			path = Renderer;
 			sourceTree = "<group>";
 		};
-		90F941A8219FBB4E0036A0CC /* Math */ = {
-			isa = PBXGroup;
-			children = (
-				90F941A9219FBB4E0036A0CC /* Math.h */,
-				90F9419E219FB80B0036A0CC /* Math.swift */,
-				90F941AA219FBB4E0036A0CC /* Info.plist */,
-			);
-			path = Math;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		90F941A2219FBB4E0036A0CC /* Headers */ = {
+		14670B0121B65841000C6F5C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90F941AB219FBB4E0036A0CC /* Math.h in Headers */,
+				14670B0A21B65841000C6F5C /* GMath.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		14670B0521B65841000C6F5C /* GMath */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14670B0F21B65841000C6F5C /* Build configuration list for PBXNativeTarget "GMath" */;
+			buildPhases = (
+				14670B0121B65841000C6F5C /* Headers */,
+				14670B0221B65841000C6F5C /* Sources */,
+				14670B0321B65841000C6F5C /* Frameworks */,
+				14670B0421B65841000C6F5C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GMath;
+			productName = GMath;
+			productReference = 14670B0621B65841000C6F5C /* GMath.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		90F94185219F90800036A0CC /* ShadingDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90F94196219F90810036A0CC /* Build configuration list for PBXNativeTarget "ShadingDemo" */;
@@ -242,30 +260,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				90F941AD219FBB4E0036A0CC /* PBXTargetDependency */,
+				14670B0C21B65841000C6F5C /* PBXTargetDependency */,
 			);
 			name = ShadingDemo;
 			productName = ShadingDemo;
 			productReference = 90F94186219F90800036A0CC /* ShadingDemo.app */;
 			productType = "com.apple.product-type.application";
-		};
-		90F941A6219FBB4E0036A0CC /* Math */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 90F941B0219FBB4E0036A0CC /* Build configuration list for PBXNativeTarget "Math" */;
-			buildPhases = (
-				90F941A2219FBB4E0036A0CC /* Headers */,
-				90F941A3219FBB4E0036A0CC /* Sources */,
-				90F941A4219FBB4E0036A0CC /* Frameworks */,
-				90F941A5219FBB4E0036A0CC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Math;
-			productName = Math;
-			productReference = 90F941A7219FBB4E0036A0CC /* Math.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -277,12 +277,12 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = lowe;
 				TargetAttributes = {
+					14670B0521B65841000C6F5C = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					90F94185219F90800036A0CC = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
-					};
-					90F941A6219FBB4E0036A0CC = {
-						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
@@ -300,12 +300,19 @@
 			projectRoot = "";
 			targets = (
 				90F94185219F90800036A0CC /* ShadingDemo */,
-				90F941A6219FBB4E0036A0CC /* Math */,
+				14670B0521B65841000C6F5C /* GMath */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		14670B0421B65841000C6F5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90F94184219F90800036A0CC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,16 +329,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		90F941A5219FBB4E0036A0CC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		14670B0221B65841000C6F5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14670B1221B6584A000C6F5C /* GMath.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90F94182219F90800036A0CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -353,21 +361,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		90F941A3219FBB4E0036A0CC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				90F941B4219FBB5F0036A0CC /* Math.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		90F941AD219FBB4E0036A0CC /* PBXTargetDependency */ = {
+		14670B0C21B65841000C6F5C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 90F941A6219FBB4E0036A0CC /* Math */;
-			targetProxy = 90F941AC219FBB4E0036A0CC /* PBXContainerItemProxy */;
+			target = 14670B0521B65841000C6F5C /* GMath */;
+			targetProxy = 14670B0B21B65841000C6F5C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -383,6 +383,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		14670B1021B65841000C6F5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4S68FLC2TS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = GMath/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Zack.GMath;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		14670B1121B65841000C6F5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4S68FLC2TS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = GMath/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Zack.GMath;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		90F94194219F90810036A0CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -543,67 +601,18 @@
 			};
 			name = Release;
 		};
-		90F941B1219FBB4E0036A0CC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7H237A2BEL;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Math/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = lowe.Math;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		90F941B2219FBB4E0036A0CC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7H237A2BEL;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Math/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = lowe.Math;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		14670B0F21B65841000C6F5C /* Build configuration list for PBXNativeTarget "GMath" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14670B1021B65841000C6F5C /* Debug */,
+				14670B1121B65841000C6F5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		90F94181219F90800036A0CC /* Build configuration list for PBXProject "ShadingDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -618,15 +627,6 @@
 			buildConfigurations = (
 				90F94197219F90810036A0CC /* Debug */,
 				90F94198219F90810036A0CC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		90F941B0219FBB4E0036A0CC /* Build configuration list for PBXNativeTarget "Math" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				90F941B1219FBB4E0036A0CC /* Debug */,
-				90F941B2219FBB4E0036A0CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
