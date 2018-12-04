@@ -16,8 +16,8 @@ class Camera: Node {
     var near: Float = 0.01
     var far: Float = 100
     
-    private var center = float3()
-    private var up = float3()
+    private(set) var center = float3()
+    private(set) var up = float3()
     
     var projectionMatrix: float4x4 {
         return perspective(aspect: aspect,

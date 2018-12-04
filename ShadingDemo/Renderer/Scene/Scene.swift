@@ -21,6 +21,8 @@ class Scene {
     var renderables: [Renderable] = []
     var uniforms = Uniforms()
     
+    var inputController = InputController()
+    
     var device: MTLDevice
     
     init(sceneSize: CGSize, device: MTLDevice) {
@@ -37,6 +39,7 @@ class Scene {
     }
     
     final func update(deltaTime: Float) {
+        inputController.updateCamera(deltaTime: deltaTime)
         uniforms.projectionMatrix = camera.projectionMatrix
         uniforms.viewMatrix = camera.viewMatrix
         updateScene(deltaTime: deltaTime)

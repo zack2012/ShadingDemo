@@ -12,7 +12,7 @@ class GameScene: Scene {
     private var teapot: Prop?
     
     override func setupScene() {
-        camera.position = [2, 2, 2]
+        camera.position = [0, 0, 2]
         camera.lookAt(center: [0, 0, 0], up: [0, 1, 0])
 
         let cow = Prop(name: "spot", device: device)
@@ -24,6 +24,9 @@ class GameScene: Scene {
         cube.position = [2, 1, 1]
         cube.scale = [0.5, 0.5, 0.5]
         add(cube)
+        
+        inputController.camera = camera
+        
 //        let dragon = DragonProp(name: "dragon", device: device)
 //        dragon.position = [2, 0, 0]
 //        dragon.rotation = [0, 1, 0]

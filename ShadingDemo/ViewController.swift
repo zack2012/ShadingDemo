@@ -32,9 +32,22 @@ class ViewController: NSViewController {
             let gameScene = GameScene(sceneSize: metalView.bounds.size, device: renderer.device)
             renderer.scene = gameScene
             addGesture(to: metalView)
+            
+            NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
+                self.keyDown(with: $0)
+                return nil
+            }
+            
+            NSEvent.addLocalMonitorForEvents(matching: .keyUp) {
+                self.keyUp(with: $0)
+                return nil
+            }
+            
         } catch {
             print(error)
         }
+        
+        
     }
 
     func addGesture(to view: NSView) {
@@ -48,30 +61,29 @@ class ViewController: NSViewController {
             Float(gesture.translation(in: gesture.view).y)
         ]
 
-        rotate(translation: translation)
+        renderer?.scene?.inputController.rotate(translation: translation)
         gesture.setTranslation(.zero, in: gesture.view)
     }
     
     override func scrollWheel(with event: NSEvent) {
-        let sensitivity: Float = 0.01
-        zoom(delta: event.deltaY, sensitivity: sensitivity)
+        renderer?.scene?.inputController.zoom(delta: event.deltaY)
     }
     
-    func rotate(translation: float2, sensitivity: Float = 0.01) {
-        guard let camera = renderer.scene?.camera else {
+    override func keyDown(with event: NSEvent) {
+        guard let key = KeyboardControl(rawValue: event.keyCode) else {
             return
         }
         
-        camera.position = Math.rotation(axis: [0, 1, 0], angle: -translation.x * sensitivity).upperLeft * camera.position
+        let state: InputState = event.isARepeat ? .continued : .began
+        renderer?.scene?.inputController.processEvent(key: key, state: state)
     }
     
-    func zoom(delta: CGFloat, sensitivity: Float = 0.1) {
-        guard let camera = renderer.scene?.camera else {
+    override func keyUp(with event: NSEvent) {
+        guard let key = KeyboardControl(rawValue: event.keyCode) else {
             return
         }
         
-        let cameraVector = camera.modelMatrix.columns.3.xyz
-        camera.position += Float(delta) * sensitivity * cameraVector
+        renderer?.scene?.inputController.processEvent(key: key, state: .ended)
     }
 }
 
